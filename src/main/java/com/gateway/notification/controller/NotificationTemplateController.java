@@ -1,9 +1,9 @@
 package com.gateway.notification.controller;
 
-import com.gateway.notification.dto.NotificationRequestDTO;
+import com.gateway.notification.dto.NotificationTemplateReqDTO;
 import com.gateway.notification.dto.enums.NotificationType;
 import com.gateway.notification.entity.NotificationTemplateEntity;
-import com.gateway.notification.service.NotificationService;
+import com.gateway.notification.service.NotificationTemplateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/notifications")
-public class NotificationController {
+@RequestMapping("/api/notification-template")
+public class NotificationTemplateController {
 
     @Autowired
-    private NotificationService service;
+    private NotificationTemplateService service;
 
     @PostMapping("/admin")
-    public ResponseEntity<NotificationTemplateEntity> create(@RequestBody NotificationRequestDTO dto) {
+    public ResponseEntity<NotificationTemplateEntity> create(@RequestBody NotificationTemplateReqDTO dto) {
         return ResponseEntity.ok(service.createNotification(dto));
     }
 
@@ -37,7 +37,7 @@ public class NotificationController {
     @PutMapping("/admin/{id}")
     public ResponseEntity<NotificationTemplateEntity> update(
             @PathVariable Long id,
-            @RequestBody NotificationRequestDTO dto) {
+            @RequestBody NotificationTemplateReqDTO dto) {
         return ResponseEntity.ok(service.update(id, dto));
     }
 

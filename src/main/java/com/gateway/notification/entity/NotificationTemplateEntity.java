@@ -19,5 +19,10 @@ public class NotificationTemplateEntity {
 
     private String title;
     private String description;
+    private String titleDynamicVarNames; // comma separated
+    private String descDynamicVarNames; // comma separated
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private String createdBy;
+    private String updatedBy;
 }
