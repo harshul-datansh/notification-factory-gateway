@@ -1,5 +1,6 @@
 package com.gateway.notification.factory.template.inapp.type;
 
+import com.gateway.notification.dto.Data;
 import com.gateway.notification.factory.NotificationAbstract;
 import com.gateway.notification.factory.template.inapp.InAppNotificationService;
 import lombok.AllArgsConstructor;
@@ -11,13 +12,13 @@ import java.util.List;
 @Slf4j
 @Service
 @AllArgsConstructor
-public class SimpleInAppNotificationImpl extends NotificationAbstract {
+public class SimpleInAppNotificationImpl extends NotificationAbstract<Data> {
 
     private final InAppNotificationService inAppNotificationService;
 
-    private List<String> getResolvedValuesSomehow() {
-        // Replace this with real logic — e.g., fetch from DB, request context, etc.
-        return List.of("User", "System");
+    @Override
+    public void send(String to, String notificationTemplateId, List<String> titleVarValues, List<String> descVarValues, Data data) {
+        inAppNotificationService.saveInAppNotification(to, notificationTemplateId, titleVarValues, descVarValues); // attach data when is relevant
     }
 
     @Override
