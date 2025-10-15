@@ -1,5 +1,6 @@
 package com.gateway.notification.factory.template.email.type;
 
+import com.gateway.notification.dto.Data;
 import com.gateway.notification.entity.NotificationTemplateEntity;
 import com.gateway.notification.factory.NotificationAbstract;
 import com.gateway.notification.repository.NotificationTemplateRepository;
@@ -15,8 +16,13 @@ import static com.gateway.notification.util.NotificationUtil.resolveDynamicVarWi
 @Slf4j
 @Service
 @AllArgsConstructor
-public class SimpleEmailNotificationImpl extends NotificationAbstract {
+public class SimpleEmailNotificationImpl extends NotificationAbstract<Object> {
     private NotificationTemplateRepository notificationTemplateRepository;
+
+    @Override
+    public void send(String to, String notificationTemplateId, List<String> titleVarValues, List<String> descVarValues, Object data) {
+        // send email with attached data
+    }
 
     @Override
     public void send(String toEmailId, String notificationTemplateId,
